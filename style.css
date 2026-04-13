@@ -1,3 +1,20 @@
 /* FONT STYLE  */
 @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
+
+/* VARIABLE CSS */
+:root {
+    --header-height: 3.5rem;
+
+/* COLORS  */
+  /* Color mode HSL(hue, saturation, lightness) */
+  
+  --first-color: hsl(106, 64%, 54%);
+  --first-color-alt: hsl(106, 64%, 52%);
+  --title-color: hsl(106, 16%, 15%);
+  --text-color: hsl(106, 16%, 35%);
+  --text-color-light: hsl(106, 8%, 55%);
+  --body-color: hsl(106, 100%, 96%);
+  --container-color: hsl(606, 100%, 97%);
+
+}
