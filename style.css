@@ -16,7 +16,7 @@
   --body-color: hsl(106, 100%, 96%);
   --container-color: hsl(606, 100%, 97%);
 
-    /* FONT TYPOGRAPHY  */
+  /* FONT TYPOGRAPHY  */
   /* .5rem=8px | 1rem=16px  */
   --brand-font: "PT Serif", sans-serif;
   --body-font: "Nunito", sans-serif;
@@ -37,4 +37,87 @@
   --z-tooltip: 10;
   --z-fixed: 100;
 }
+/* RESPONSIVE TYPOGRAPHY  */
+@media screen and (min-width: 1150px) {
+  :root {
+    --biggest-font-size: 9.5rem;
+    --big-font-size: 4rem;
+    --h1-font-size: 2rem;
+    --h2-font-size: 1.5rem;
+    --h3-font-size: 1.25rem;
+    --normal-font-size: 1rem;
+    --small-font-size: 0.875rem;
+  }
+}
 
+/* BASE  */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html {
+  scroll-behavior: smooth;
+}
+
+input,
+button,
+body {
+  font-family: var(--second-font);
+  font-size: var(--normal-font-size);
+}
+
+body {
+  background-color: var(--white-color);
+  color: var(--body-color);
+}
+
+input,
+button {
+  outline: none;
+  border: none;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--body-font);
+  font-weight: var(--font-medium);
+  line-height: 110%;
+}
+ul {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+}
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* REUSABLE CSS CLASSES  */
+.container {
+  max-width: 1120px;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+.grid {
+  display: grid;
+  gap: 1.5rem;
+}
+.section {
+  padding-block: 5rem 4rem;
+}
+
+.section__title {
+  text-align: center;
+  font-size: var(--big-font-size);
+  font-weight: var(--font-semi-bold);
+  margin-bottom: 2.5rem;
+}
+.main {
+  overflow: hidden;
+}
