@@ -11,10 +11,10 @@
   --first-color: hsl(106, 64%, 54%);
   --first-color-alt: hsl(106, 64%, 52%);
   --title-color: hsl(106, 16%, 15%);
-  --text-color: hsl(106, 16%, 35%);
-  --text-color-light: hsl(106, 8%, 55%);
+  --text-color: rgb(22, 31, 20);
+  --text-color-light: rgb(52, 66, 49);
   --body-color: hsl(106, 100%, 96%);
-  --container-color: hsl(606, 100%, 97%);
+  --container-color: hsla(108, 100%, 97%, 0.509);
 
   /* FONT TYPOGRAPHY  */
   /* .5rem=8px | 1rem=16px  */
@@ -63,13 +63,13 @@ html {
 input,
 button,
 body {
-  font-family: var(--second-font);
+  font-family: var(--body-font);
   font-size: var(--normal-font-size);
 }
 
 body {
-  background-color: var(--white-color);
-  color: var(--body-color);
+  background-color: var(--body-color);
+  color: var(--text-color);
 }
 
 input,
@@ -120,4 +120,28 @@ img {
 }
 .main {
   overflow: hidden;
+}
+
+/* HEADER  */
+.header {
+  height: var(--header-heigh);
+}
+.header__container {
+  display: flex;
+  flex-direction: column;
+}
+.section__title {
+  font-style: var(--brand-font);
+  font-size: var(--big-font-size);
+  text-align: start;
+  color: var(--text-color);
+  margin-bottom: 0.5rem;
+}
+.header__description {
+  font-size: var(--h1-font-size);
+  font-style: var(--body-font);
+  font-weight: var(--font-medium);
+  color: var(--text-color-light);
+  width: 100%;
+  max-width: 500px;
 }
