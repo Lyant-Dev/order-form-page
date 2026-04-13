@@ -14,7 +14,7 @@
   --text-color: hsl(99, 34%, 11%);
   --text-color-light: hsl(113, 9%, 17%);
   --body-color: hsl(107, 24%, 89%);
-  --container-color: hsl(105, 100%, 98%);
+  --container-color: hsl(0, 0%, 99%);
 
   /* FONT TYPOGRAPHY  */
   /* .5rem=8px | 1rem=16px  */
@@ -133,12 +133,12 @@ img {
 .section__title {
   margin-bottom: 0.5rem;
   font-family: var(--brand-font);
-  font-size: var(--big-font-size);
+  font-size: var(--h1-font-size);
   text-align: left;
   color: var(--title-color);
 }
 .header__description {
-  font-size: var(--h1-font-size);
+  font-size: var(--h3-font-size);
   font-family: var(--body-font);
   font-weight: var(--font-medium);
   color: var(--text-color-light);
@@ -146,10 +146,3 @@ img {
 }
 
 /* PRODUCTS  */
-.products__container {
-  background-color:var(--container-color);
-  border-radius: 1rem;
-}
-.products__card {
-  display: grid;
-}
