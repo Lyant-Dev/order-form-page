@@ -10,9 +10,9 @@
 
   --first-color: hsl(106, 64%, 54%);
   --first-color-alt: hsl(106, 64%, 52%);
-  --title-color: hsl(106, 16%, 15%);
-  --text-color: rgb(22, 31, 20);
-  --text-color-light: rgb(52, 66, 49);
+  --title-color: hsl(104, 16%, 13%);
+  --text-color: hsl(99, 34%, 11%);
+  --text-color-light: hsl(113, 9%, 17%);
   --body-color: hsl(106, 100%, 96%);
   --container-color: hsla(108, 100%, 97%, 0.509);
 
@@ -124,24 +124,24 @@ img {
 
 /* HEADER  */
 .header {
-  height: var(--header-heigh);
+  padding-block: 2rem;
+  height: var(--header-height);
 }
 .header__container {
   display: flex;
   flex-direction: column;
 }
 .section__title {
-  font-style: var(--brand-font);
-  font-size: var(--big-font-size);
-  text-align: start;
-  color: var(--text-color);
   margin-bottom: 0.5rem;
+  font-family: var(--brand-font);
+  font-size: var(--big-font-size);
+  text-align: left;
+  color: var(--title-color);
 }
 .header__description {
   font-size: var(--h1-font-size);
-  font-style: var(--body-font);
+  font-family: var(--body-font);
   font-weight: var(--font-medium);
   color: var(--text-color-light);
-  width: 100%;
   max-width: 500px;
 }
