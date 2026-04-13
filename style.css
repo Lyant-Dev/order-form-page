@@ -125,7 +125,6 @@ img {
 /* HEADER  */
 .header {
   padding-block: 2rem;
-  height: var(--header-height);
 }
 .header__container {
   display: flex;
