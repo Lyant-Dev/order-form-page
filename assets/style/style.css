@@ -160,3 +160,7 @@ img {
   object-fit: cover;
   border-radius: 0.5rem;
 }
+
+.products__info {
+  flex: 1;
+}
