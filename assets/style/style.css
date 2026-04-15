@@ -154,3 +154,9 @@ img {
   border-radius: 1rem;
   background-color: var(--container-color);
 }
+.products__image {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 0.5rem;
+}
