@@ -158,6 +158,9 @@ img {
 .products__card:hover {
   background-color: var(--first-color);
 }
+.products__menu{
+  font-size: var(--h2-font-size);
+}
 .products__image {
   width: 70px;
   height: 70px;
