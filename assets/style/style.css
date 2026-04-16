@@ -13,9 +13,9 @@
   --title-color: hsl(89, 16%, 13%);
   --text-color: hsl(89, 34%, 11%);
   --text-color-light: hsl(89, 9%, 17%);
-  --body-color: hsl(89, 0%, 93%);
-  --body-color-white: hsl(0, 0%, 100%);
-  --container-color: hsl(89, 76%, 87%);
+  --body-color: hsl(89, 29%, 94%);
+  --body-color-white: hsl(89, 0%, 100%);
+  --container-color: hsl(89, 77%, 76%);
 
   /* FONT TYPOGRAPHY  */
   /* .5rem=8px | 1rem=16px  */
@@ -201,4 +201,7 @@ img {
   background-color: #f2f2f2;
   padding: 0.5rem 0.75rem;
   border-radius: 0.5rem;
+}
+.decrease__btn, .increase__btn {
+  border-radius: 2rem;
 }
