@@ -202,6 +202,19 @@ img {
   padding: 0.5rem 0.75rem;
   border-radius: 0.5rem;
 }
-.decrease__btn, .increase__btn {
-  border-radius: 2rem;
+/* CUSTOMER DATA  */
+.customer__data {
+  background-color: var(--body-color-white);
+  margin: 0.5rem;
+  border-radius: 0.5rem;
+}
+.data__title {
+  font-size: var(--h2-font-size);
+  padding-top: 1rem;
+  font-weight: var(--font-semi-bold);
+}
+.customer__form {
+  display: flex;
+  flex-direction: column;
+  
 }
