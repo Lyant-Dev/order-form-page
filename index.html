@@ -86,7 +86,7 @@
         <div
           class="products__card"
           data-name="Seafood Fried-rice"
-          data-price="35000"
+          data-price="39000"
         >
           <img
             src="assets/img/product-3.png"
@@ -116,10 +116,60 @@
     <section class="customer__data" id="customer-data">
       <div class="customer__data container grid">
         <h2 class="data__title">Isi Data Pemesanan</h2>
-        <form action="" class="customer__data">
+        <form action="" class="customer__form" id="order-form">
           <div class="customer__input">
-            
+            <input
+              type="text"
+              name="name"
+              id="name"
+              required
+              aria-label="name"
+              placeholder="Nama"
+            />
           </div>
+          <div class="customer__input">
+            <input
+              type="tel"
+              name="number"
+              id="number"
+              required
+              aria-label="number"
+              placeholder="No. Whatsapp"
+            />
+          </div>
+          <div class="customer__input">
+            <input
+              type="text"
+              name="date"
+              id="date"
+              required
+              aria-label="date"
+              placeholder="Tanggal Order (contoh: 1 Januari 2026)"
+            />
+          </div>
+          <div class="customer__input">
+            <input
+              type="text"
+              name="address"
+              id="address"
+              required
+              aria-label="address"
+              placeholder="Alamat Pengiriman"
+            />
+          </div>
+          <div class="customer__input">
+            <input
+              type="text"
+              name="note"
+              id="note"
+              required
+              aria-label="note"
+              placeholder="Catatan"
+            />
+          </div>
+          <button type="submit" class="submit__button">
+            Kirim Order ke WhatsApp
+          </button>
         </form>
       </div>
     </section>
