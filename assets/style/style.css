@@ -8,13 +8,14 @@
   /* COLORS  */
   /* Color mode HSL(hue, saturation, lightness) */
 
-  --first-color: hsl(106, 64%, 54%);
-  --first-color-alt: hsl(106, 64%, 52%);
-  --title-color: hsl(104, 16%, 13%);
-  --text-color: hsl(99, 34%, 11%);
-  --text-color-light: hsl(113, 9%, 17%);
-  --body-color: hsl(107, 24%, 89%);
-  --container-color: hsl(0, 0%, 99%);
+  --first-color: hsl(89, 64%, 54%);
+  --first-color-alt: hsl(89, 64%, 52%);
+  --title-color: hsl(89, 16%, 13%);
+  --text-color: hsl(89, 34%, 11%);
+  --text-color-light: hsl(89, 9%, 17%);
+  --body-color: hsl(89, 0%, 93%);
+  --body-color-white: hsl(0, 0%, 100%);
+  --container-color: hsl(89, 76%, 87%);
 
   /* FONT TYPOGRAPHY  */
   /* .5rem=8px | 1rem=16px  */
@@ -146,6 +147,12 @@ img {
 }
 
 /* PRODUCTS  */
+.products__container {
+  background-color: var(--body-color-white);
+  margin: 0rem 0.5rem;
+  border-radius: 1rem;
+  padding-bottom: 1rem;
+}
 .products__card {
   display: flex;
   align-items: center;
@@ -158,8 +165,10 @@ img {
 .products__card:hover {
   background-color: var(--first-color);
 }
-.products__menu{
+.menu__title {
   font-size: var(--h2-font-size);
+  padding-top: 1rem;
+  font-weight: var(--font-semi-bold);
 }
 .products__image {
   width: 70px;
