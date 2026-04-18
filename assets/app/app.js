@@ -6,7 +6,7 @@
 // Encode → kirim ke WhatsApp
 
 // Ambil semua products card
-const card = document.querySelectorAll(".products__card");
+const cards = document.querySelectorAll(".products__card");
 
 //=======================
 // 1. HANDLE QTY ( +/- )
@@ -21,7 +21,7 @@ cards.forEach((card) => {
 
   plusBtn.addEventListener("click", () => {
     qty++;
-    qtyEl.textcontent = qty;
+    qtyEl.textContent = qty;
   });
 
   minusBtn.addEventListener("click", () => {
@@ -30,4 +30,6 @@ cards.forEach((card) => {
       qtyEl.textContent = qty;
     }
   });
+
 });
+
