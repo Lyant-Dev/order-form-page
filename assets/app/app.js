@@ -39,3 +39,22 @@ cards.forEach((card) => {
 //Ambil form
 const form = document.getElementById("order-form");
 
+form.addEventListener("submit", function (e) {
+  // Cegah reload halaman
+  e.preventDefault();
+});
+
+// ======================
+// 2.1 INIT MESSAGE & TOTAL
+// ======================
+
+// Text awal pesan
+
+const message = "Halo, Saya ingin order:\n\n";
+
+// Total harga
+let total = 0;
+
+// ======================
+// 2.2 Loop Semua Products
+// ======================
