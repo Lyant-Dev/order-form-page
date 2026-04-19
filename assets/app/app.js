@@ -30,6 +30,12 @@ cards.forEach((card) => {
       qtyEl.textContent = qty;
     }
   });
-
 });
+
+// =======================
+// 2. HANDLE SUBMIT FORM
+// =======================
+
+//Ambil form
+const form = document.getElementById("order-form");
 
