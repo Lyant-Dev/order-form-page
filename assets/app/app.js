@@ -58,3 +58,20 @@ let total = 0;
 // ======================
 // 2.2 Loop Semua Products
 // ======================
+
+cards.forEach((card) => {
+  //Ambil data dari HTML (products__title & products__price )
+  const name = card.dataset.name;
+  const price = Number(card.dataset.price);
+
+  //Ambil qty dari tampilan
+  const qty = Number(card.querySelector(".qty__num").textContent);
+
+  // Kalau qty > 0 -> masuk ke order
+  if (qty > 0) {
+    message += `- ${name} x${qty}\n`;
+
+    //Hitug total
+    total += price * qty;
+  }
+});
