@@ -75,3 +75,17 @@ cards.forEach((card) => {
     total += price * qty;
   }
 });
+
+// =======================
+// 2.3 VALIDASI MINIMAL ORDER
+// =======================
+
+if (total === 0) {
+  alert("Pilih minimal 1 menu");
+  return; // stop eksekusi
+}
+
+// Tambahin total ke pesan 
+message += `\nTotal: Rp${total}\n\n`;
+
+
