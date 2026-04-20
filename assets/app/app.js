@@ -88,4 +88,10 @@ if (total === 0) {
 // Tambahin total ke pesan 
 message += `\nTotal: Rp${total}\n\n`;
 
+// Tambahin ke message 
+message += `Nama: ${customerName}\n`;
+message += `No WA: ${number}\n`;
+message += `Tanggal: ${date}\n`;
+message += `Alamat: ${address}\n`;
 
+// Catatan Opsional
