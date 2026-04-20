@@ -59,7 +59,8 @@ form.addEventListener("submit", function (e) {
   // ======================
 
   cards.forEach((card) => {
-    //Ambil data dari HTML (products__title & products__price )
+    // Ambil data dari HTML (data-name & data-price)
+
     const name = card.dataset.name;
     const price = Number(card.dataset.price);
 
@@ -108,7 +109,7 @@ form.addEventListener("submit", function (e) {
   const encodedMessage = encodeURIComponent(message);
 
   //Buat link Whatsapp
-  const url = `https://wa.me/${phone}?text=${encodeMessage}`;
+  const url = `https://wa.me/${phone}?text=${encodedMessage}`;
 
   // Buka WhatsApp di tab baru
   window.open(url, "_blank");
