@@ -85,6 +85,16 @@ form.addEventListener("submit", function (e) {
     return; // stop eksekusi
   }
 
+  // ======================
+  // AMBIL DATA CUSTOMER
+  // ======================
+
+  const customerName = document.getElementById("name").value;
+  const number = document.getElementById("number").value;
+  const date = document.getElementById("date").value;
+  const address = document.getElementById("address").value;
+  const note = document.getElementById("note").value;
+
   // Tambahin total ke pesan
   message += `\nTotal: Rp${total}\n\n`;
 
@@ -103,7 +113,7 @@ form.addEventListener("submit", function (e) {
   // 2.5 KIRIM KE WHATSAPP
   // =======================
 
-  const phone = "08138093473"; // GANTI NOMOR TUJUAN
+  const phone = "628138093473"; // GANTI NOMOR TUJUAN
 
   // Encode biar aman di URL
   const encodedMessage = encodeURIComponent(message);
