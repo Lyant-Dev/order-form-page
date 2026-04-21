@@ -49,7 +49,7 @@ form.addEventListener("submit", function (e) {
 
   // Text awal pesan
 
-  const message = "Halo, Saya ingin order:\n\n";
+  let message = "Halo, Saya ingin order:\n\n";
 
   // Total harga
   let total = 0;
@@ -71,7 +71,7 @@ form.addEventListener("submit", function (e) {
     if (qty > 0) {
       message += `- ${name} x${qty}\n`;
 
-      //Hitug total
+      //Hitung total
       total += price * qty;
     }
   });
