@@ -206,6 +206,16 @@ img {
 .qty__plus {
   cursor: pointer;
 }
+
+/* ORDER SUMMARY */
+.summary__title {
+  font-size: var(--normal-font-size);
+  font-weight: var(--font-semi-bold);
+  margin-top: 1rem;
+}
+
+
+
 /* CUSTOMER DATA  */
 .customer__data {
   background-color: var(--body-color-white);
