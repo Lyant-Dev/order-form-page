@@ -85,6 +85,16 @@ form.addEventListener("submit", function (e) {
     return; // stop eksekusi
   }
 
+  // ==========================
+  // SUMMARY LOGIC
+  // ==========================
+
+  function updateSummary() {
+    const summaryList = document.getElementById("summary-list");
+    const summaryTotal = document.getElementById("summary-total");
+    
+  }
+
   // ======================
   // AMBIL DATA CUSTOMER
   // ======================
