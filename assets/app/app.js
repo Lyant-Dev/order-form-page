@@ -1,5 +1,14 @@
+// FLOW SISTEM
+// User klik + / - → update qty
+// Klik submit → ambil semua data
+// Filter item yang qty > 0
+// Susun jadi text
+// Encode → kirim ke WhatsApp
+
 // ========================
 // GLOBAL SELECTOR
+// Ambil semua elemen penting SEKALI di awal
+// Hindari querySelector berulang (lebih efisien & rapi)
 // ========================
 
 const cards = document.querySelectorAll(".products__card");
@@ -9,7 +18,9 @@ const submitBtn = document.querySelector(".submit__button");
 const form = document.getElementById("order-form");
 
 // ========================
-// GET CART ITEMS (CORE LOGIC)
+// GET CART ITEMS (CORE SOURCE)
+// Ambil data REAL dari UI (DOM)
+// Ini jadi "single source of truth"
 // ========================
 
 function getCartItems() {
@@ -18,6 +29,9 @@ function getCartItems() {
   cards.forEach((card) => {
     const name = card.dataset.name;
     const price = Number(card.dataset.price);
+
+    // Ambil qty langsung dari UI (bukan dari variable lokal)
+    // biar selalu konsisten walaupun user klik berkali-kali
     const qty = Number(card.querySelector(".qty__num").textContent);
 
     if (qty > 0) {
@@ -29,7 +43,9 @@ function getCartItems() {
 }
 
 // ========================
-// HITUNG TOTAL
+// CALCULATE TOTAL
+// Pure function (tidak tergantung DOM)
+// Bisa dipakai di mana aja
 // ========================
 
 function calculateTotal(items) {
@@ -43,17 +59,19 @@ function calculateTotal(items) {
 }
 
 // ========================
-// RENDER SUMMARY UI
+// UPDATE SUMMARY UI
+// Render ulang tampilan berdasarkan data terbaru
+// TIDAK boleh ambil data manual (harus dari getCartItems)
 // ========================
 
 function updateSummary() {
   const items = getCartItems();
   const total = calculateTotal(items);
 
-  // reset list
+  // reset list sebelum render ulang
   summaryList.innerHTML = "";
 
-  // kalau kosong
+  // kalau belum ada item
   if (items.length === 0) {
     summaryList.innerHTML = "<li>Belum ada pesanan</li>";
   } else {
@@ -68,12 +86,13 @@ function updateSummary() {
   const formattedTotal = total.toLocaleString("id-ID");
   summaryTotal.textContent = `Total: Rp${formattedTotal}`;
 
-  // enable / disable button
+  // Disable tombol kalau belum ada pesanan
   submitBtn.disabled = total === 0;
 }
 
 // ========================
 // HANDLE QTY BUTTON
+// Update UI → lalu refresh summary
 // ========================
 
 cards.forEach((card) => {
@@ -82,6 +101,7 @@ cards.forEach((card) => {
   const qtyEl = card.querySelector(".qty__num");
 
   plusBtn.addEventListener("click", () => {
+    // Selalu baca dari UI biar gak desync
     let qty = Number(qtyEl.textContent);
     qtyEl.textContent = qty + 1;
     updateSummary();
@@ -89,6 +109,8 @@ cards.forEach((card) => {
 
   minusBtn.addEventListener("click", () => {
     let qty = Number(qtyEl.textContent);
+
+    // Prevent minus jadi negatif
     if (qty > 0) {
       qtyEl.textContent = qty - 1;
       updateSummary();
@@ -97,11 +119,12 @@ cards.forEach((card) => {
 });
 
 // ========================
-// FORMAT NOMOR WA
+// FORMAT PHONE NUMBER
+// Normalisasi ke format Indonesia (62xxxx)
 // ========================
 
 function formatPhone(number) {
-  let clean = number.replace(/\D/g, "");
+  let clean = number.replace(/\D/g, ""); // hapus selain angka
 
   if (clean.startsWith("0")) {
     return "62" + clean.slice(1);
@@ -115,7 +138,9 @@ function formatPhone(number) {
 }
 
 // ========================
-// BUILD MESSAGE
+// BUILD WHATSAPP MESSAGE
+// Gabungkan semua data jadi text siap kirim
+// Mudah diubah kalau format order berubah
 // ========================
 
 function buildMessage(items, customer, total) {
@@ -142,6 +167,7 @@ function buildMessage(items, customer, total) {
 
 // ========================
 // HANDLE SUBMIT
+// Orchestrator: gabung semua logic jadi satu flow
 // ========================
 
 form.addEventListener("submit", function (e) {
@@ -149,7 +175,7 @@ form.addEventListener("submit", function (e) {
 
   const items = getCartItems();
   const total = calculateTotal(items);
-
+  // Guard clause: cegah order kosong
   if (total === 0) {
     alert("Pilih minimal 1 menu");
     return;
@@ -164,8 +190,13 @@ form.addEventListener("submit", function (e) {
     note: document.getElementById("note").value,
   };
 
-  // validasi
-  if (!customer.name || !customer.phone || !customer.date || !customer.address) {
+  // validasi basic
+  if (
+    !customer.name ||
+    !customer.phone ||
+    !customer.date ||
+    !customer.address
+  ) {
     alert("Lengkapi data dulu");
     return;
   }
@@ -182,6 +213,7 @@ form.addEventListener("submit", function (e) {
 
 // ========================
 // INIT
+// Jalankan pertama kali untuk set state awal UI
 // ========================
 
 updateSummary();
