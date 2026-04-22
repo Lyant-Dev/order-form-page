@@ -14,11 +14,13 @@ const cards = document.querySelectorAll(".products__card");
 
 function updateSummary() {
   const summaryList = document.getElementById("summary-list");
+
   const summaryTotal = document.getElementById("summary-total");
   // RESET ISI
   summaryList.innerHTML = "";
 
   let total = 0;
+  let hasItem = false;
 
   cards.forEach((card) => {
     const name = card.dataset.name;
@@ -26,6 +28,7 @@ function updateSummary() {
     const qty = Number(card.querySelector(".qty__num").textContent);
 
     if (qty > 0) {
+      hasItem = true;
       // BUAT ITEM LIST
       const li = document.createElement("li");
       li.textContent = `${name} x${qty}`;
@@ -35,11 +38,18 @@ function updateSummary() {
     }
   });
 
-  const formatedTotal = total.toLocaleString("id-ID");
-
-  summaryTotal.textContent = `Total: Rp${formatedTotal}`;
 
   const submitBtn = document.querySelector(".submit__button");
+
+  
+  // kalau kosong bary kasih default
+  if (!hasItem) {
+    summaryList.innerHTML = "<li>Belum ada pesanan</li>";
+  }
+
+  const formattedTotal = total.toLocaleString("id-ID");
+
+  summaryTotal.textContent = `Total: Rp${formattedTotal}`;
 
   if (total > 0) {
     submitBtn.disabled = false;
@@ -57,15 +67,15 @@ cards.forEach((card) => {
   const minusBtn = card.querySelector(".qty__minus");
   const qtyEl = card.querySelector(".qty__num");
 
-  let qty = 0;
-
   plusBtn.addEventListener("click", () => {
+    let qty = Number(qtyEl.textContent);
     qty++;
     qtyEl.textContent = qty;
     updateSummary();
   });
 
   minusBtn.addEventListener("click", () => {
+    let qty = Number(qtyEl.textContent);
     if (qty > 0) {
       qty--;
       qtyEl.textContent = qty;
@@ -89,13 +99,6 @@ form.addEventListener("submit", function (e) {
   // 2.1 INIT MESSAGE & TOTAL
   // ======================
 
-  // VALIDASI INPUT
-
-  if (!customerName || !number || !date || !address) {
-    alert("Lengkapi data dulu");
-    return;
-  }
-  
   // Text awal pesan
 
   let message = "Halo, Saya ingin order:\n\n";
@@ -144,15 +147,26 @@ form.addEventListener("submit", function (e) {
   const address = document.getElementById("address").value;
   const note = document.getElementById("note").value;
 
+  // VALIDASI INPUT
+
+  if (!customerName || !number || !date || !address) {
+    alert("Lengkapi data dulu");
+    return;
+  }
+
   // Tambahin total ke pesan
-  const formatedTotal = total.toLocaleString("id-ID");
-  message += `\nTotal: Rp${formatedTotal}\n\n`;
+  const formattedTotal = total.toLocaleString("id-ID");
+  message += `\nTotal: Rp${formattedTotal}\n\n`;
 
   // FORMAT NOMOR WA USER
   let cleanNumber = number.replace(/\D/g, ""); //hapus selain angka
 
   if (cleanNumber.startsWith("0")) {
     cleanNumber = "62" + cleanNumber.slice(1);
+  } else if (cleanNumber.startsWith("62")) {
+    // biarim
+  } else {
+    cleanNumber = "62" + cleanNumber;
   }
 
   // Tambahin ke message
