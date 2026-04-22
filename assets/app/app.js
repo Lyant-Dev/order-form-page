@@ -8,6 +8,37 @@
 // Ambil semua products card
 const cards = document.querySelectorAll(".products__card");
 
+// ==========================
+// SUMMARY LOGIC
+// ==========================
+
+function updateSummary() {
+  const summaryList = document.getElementById("summary-list");
+  const summaryTotal = document.getElementById("summary-total");
+
+  // RESET ISI
+  summaryList.innerHTML = "";
+
+  let total = 0;
+
+  cards.forEach((card) => {
+    const name = card.dataset.name;
+    const price = Number(card.dataset.price);
+    const qty = Number(card.querySelectorAll(".qty__num").textContent);
+
+    if (qty > 0) {
+      // BUAT ITEM LIST
+      const li = document.createElement("li");
+      li.textContent = `${name} x${qty}`;
+      summaryList.appendChild(li);
+
+      total += price * qty;
+    }
+  });
+
+  summaryTotal.textContent = `Total: Rp${total}`;
+}
+
 //=======================
 // 1. HANDLE QTY ( +/- )
 // =======================
@@ -22,12 +53,14 @@ cards.forEach((card) => {
   plusBtn.addEventListener("click", () => {
     qty++;
     qtyEl.textContent = qty;
+    updateSummary();
   });
 
   minusBtn.addEventListener("click", () => {
     if (qty > 0) {
       qty--;
       qtyEl.textContent = qty;
+      updateSummary();
     }
   });
 });
@@ -83,16 +116,6 @@ form.addEventListener("submit", function (e) {
   if (total === 0) {
     alert("Pilih minimal 1 menu");
     return; // stop eksekusi
-  }
-
-  // ==========================
-  // SUMMARY LOGIC
-  // ==========================
-
-  function updateSummary() {
-    const summaryList = document.getElementById("summary-list");
-    const summaryTotal = document.getElementById("summary-total");
-    
   }
 
   // ======================
