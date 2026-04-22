@@ -37,6 +37,14 @@ function updateSummary() {
   });
 
   summaryTotal.textContent = `Total: Rp${total}`;
+
+  const submitBtn = document.querySelector(".submit__button");
+
+  if (total > 0) {
+    submitBtn.disabled = false;
+  } else {
+    submitBtn.disabled = true;
+  }
 }
 
 //=======================
@@ -137,15 +145,24 @@ form.addEventListener("submit", function (e) {
   message += `Tanggal: ${date}\n`;
   message += `Alamat: ${address}\n`;
 
+  // FORMAT NOMOR WA USER
+  let cleanNumber = number.replace(/\D/g, ""); //hapus selain angka
+
+  if (cleanNumber.startsWith("0")) {
+    cleanNumber = "62" + cleanNumber.slice(1);
+  }
+
   // Catatan Opsional
   if (note) {
     message += `Catatan: ${note}\n`;
   }
 
+  // VALIDASI INPUT
+
   if (!customerName || !number || !date || !address) {
-  alert("Lengkapi data dulu");
-  return;
-}
+    alert("Lengkapi data dulu");
+    return;
+  }
   // =======================
   // 2.5 KIRIM KE WHATSAPP
   // =======================
