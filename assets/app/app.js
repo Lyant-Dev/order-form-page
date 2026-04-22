@@ -1,26 +1,19 @@
-// FLOW SISTEM
-// User klik + / - → update qty
-// Klik submit → ambil semua data
-// Filter item yang qty > 0
-// Susun jadi text
-// Encode → kirim ke WhatsApp
+// ========================
+// GLOBAL SELECTOR
+// ========================
 
-// Ambil semua products card
 const cards = document.querySelectorAll(".products__card");
+const summaryList = document.getElementById("summary-list");
+const summaryTotal = document.getElementById("summary-total");
+const submitBtn = document.querySelector(".submit__button");
+const form = document.getElementById("order-form");
 
-// ==========================
-// SUMMARY LOGIC
-// ==========================
+// ========================
+// GET CART ITEMS (CORE LOGIC)
+// ========================
 
-function updateSummary() {
-  const summaryList = document.getElementById("summary-list");
-
-  const summaryTotal = document.getElementById("summary-total");
-  // RESET ISI
-  summaryList.innerHTML = "";
-
-  let total = 0;
-  let hasItem = false;
+function getCartItems() {
+  const items = [];
 
   cards.forEach((card) => {
     const name = card.dataset.name;
@@ -28,39 +21,60 @@ function updateSummary() {
     const qty = Number(card.querySelector(".qty__num").textContent);
 
     if (qty > 0) {
-      hasItem = true;
-      // BUAT ITEM LIST
-      const li = document.createElement("li");
-      li.textContent = `${name} x${qty}`;
-      summaryList.appendChild(li);
-
-      total += price * qty;
+      items.push({ name, price, qty });
     }
   });
 
-
-  const submitBtn = document.querySelector(".submit__button");
-
-  
-  // kalau kosong bary kasih default
-  if (!hasItem) {
-    summaryList.innerHTML = "<li>Belum ada pesanan</li>";
-  }
-
-  const formattedTotal = total.toLocaleString("id-ID");
-
-  summaryTotal.textContent = `Total: Rp${formattedTotal}`;
-
-  if (total > 0) {
-    submitBtn.disabled = false;
-  } else {
-    submitBtn.disabled = true;
-  }
+  return items;
 }
 
-//=======================
-// 1. HANDLE QTY ( +/- )
-// =======================
+// ========================
+// HITUNG TOTAL
+// ========================
+
+function calculateTotal(items) {
+  let total = 0;
+
+  items.forEach((item) => {
+    total += item.price * item.qty;
+  });
+
+  return total;
+}
+
+// ========================
+// RENDER SUMMARY UI
+// ========================
+
+function updateSummary() {
+  const items = getCartItems();
+  const total = calculateTotal(items);
+
+  // reset list
+  summaryList.innerHTML = "";
+
+  // kalau kosong
+  if (items.length === 0) {
+    summaryList.innerHTML = "<li>Belum ada pesanan</li>";
+  } else {
+    items.forEach((item) => {
+      const li = document.createElement("li");
+      li.textContent = `${item.name} x${item.qty}`;
+      summaryList.appendChild(li);
+    });
+  }
+
+  // format total
+  const formattedTotal = total.toLocaleString("id-ID");
+  summaryTotal.textContent = `Total: Rp${formattedTotal}`;
+
+  // enable / disable button
+  submitBtn.disabled = total === 0;
+}
+
+// ========================
+// HANDLE QTY BUTTON
+// ========================
 
 cards.forEach((card) => {
   const plusBtn = card.querySelector(".qty__plus");
@@ -69,129 +83,105 @@ cards.forEach((card) => {
 
   plusBtn.addEventListener("click", () => {
     let qty = Number(qtyEl.textContent);
-    qty++;
-    qtyEl.textContent = qty;
+    qtyEl.textContent = qty + 1;
     updateSummary();
   });
 
   minusBtn.addEventListener("click", () => {
     let qty = Number(qtyEl.textContent);
     if (qty > 0) {
-      qty--;
-      qtyEl.textContent = qty;
+      qtyEl.textContent = qty - 1;
       updateSummary();
     }
   });
 });
 
-// =======================
-// 2. HANDLE SUBMIT FORM
-// =======================
+// ========================
+// FORMAT NOMOR WA
+// ========================
 
-//Ambil form
-const form = document.getElementById("order-form");
+function formatPhone(number) {
+  let clean = number.replace(/\D/g, "");
 
-form.addEventListener("submit", function (e) {
-  // Cegah reload halaman
-  e.preventDefault();
+  if (clean.startsWith("0")) {
+    return "62" + clean.slice(1);
+  }
 
-  // ======================
-  // 2.1 INIT MESSAGE & TOTAL
-  // ======================
+  if (!clean.startsWith("62")) {
+    return "62" + clean;
+  }
 
-  // Text awal pesan
+  return clean;
+}
 
+// ========================
+// BUILD MESSAGE
+// ========================
+
+function buildMessage(items, customer, total) {
   let message = "Halo, Saya ingin order:\n\n";
 
-  // Total harga
-  let total = 0;
-
-  // ======================
-  // 2.2 Loop Semua Products
-  // ======================
-
-  cards.forEach((card) => {
-    // Ambil data dari HTML (data-name & data-price)
-
-    const name = card.dataset.name;
-    const price = Number(card.dataset.price);
-
-    //Ambil qty dari tampilan
-    const qty = Number(card.querySelector(".qty__num").textContent);
-
-    // Kalau qty > 0 -> masuk ke order
-    if (qty > 0) {
-      message += `- ${name} x${qty}\n`;
-
-      //Hitung total
-      total += price * qty;
-    }
+  items.forEach((item) => {
+    message += `- ${item.name} x${item.qty}\n`;
   });
 
-  // =======================
-  // 2.3 VALIDASI MINIMAL ORDER
-  // =======================
+  const formattedTotal = total.toLocaleString("id-ID");
+
+  message += `\nTotal: Rp${formattedTotal}\n\n`;
+  message += `Nama: ${customer.name}\n`;
+  message += `No WA: ${customer.phone}\n`;
+  message += `Tanggal: ${customer.date}\n`;
+  message += `Alamat: ${customer.address}\n`;
+
+  if (customer.note) {
+    message += `Catatan: ${customer.note}\n`;
+  }
+
+  return message;
+}
+
+// ========================
+// HANDLE SUBMIT
+// ========================
+
+form.addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const items = getCartItems();
+  const total = calculateTotal(items);
 
   if (total === 0) {
     alert("Pilih minimal 1 menu");
-    return; // stop eksekusi
+    return;
   }
 
-  // ======================
-  // AMBIL DATA CUSTOMER
-  // ======================
+  // ambil data user
+  const customer = {
+    name: document.getElementById("name").value,
+    phone: formatPhone(document.getElementById("number").value),
+    date: document.getElementById("date").value,
+    address: document.getElementById("address").value,
+    note: document.getElementById("note").value,
+  };
 
-  const customerName = document.getElementById("name").value;
-  const number = document.getElementById("number").value;
-  const date = document.getElementById("date").value;
-  const address = document.getElementById("address").value;
-  const note = document.getElementById("note").value;
-
-  // VALIDASI INPUT
-
-  if (!customerName || !number || !date || !address) {
+  // validasi
+  if (!customer.name || !customer.phone || !customer.date || !customer.address) {
     alert("Lengkapi data dulu");
     return;
   }
 
-  // Tambahin total ke pesan
-  const formattedTotal = total.toLocaleString("id-ID");
-  message += `\nTotal: Rp${formattedTotal}\n\n`;
+  // build message
+  const message = buildMessage(items, customer, total);
 
-  // FORMAT NOMOR WA USER
-  let cleanNumber = number.replace(/\D/g, ""); //hapus selain angka
+  // kirim WA
+  const phone = "628138093473";
+  const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
 
-  if (cleanNumber.startsWith("0")) {
-    cleanNumber = "62" + cleanNumber.slice(1);
-  } else if (cleanNumber.startsWith("62")) {
-    // biarim
-  } else {
-    cleanNumber = "62" + cleanNumber;
-  }
-
-  // Tambahin ke message
-  message += `Nama: ${customerName}\n`;
-  message += `No WA: ${cleanNumber}\n`;
-  message += `Tanggal: ${date}\n`;
-  message += `Alamat: ${address}\n`;
-
-  // Catatan Opsional
-  if (note) {
-    message += `Catatan: ${note}\n`;
-  }
-
-  // =======================
-  // 2.5 KIRIM KE WHATSAPP
-  // =======================
-
-  const phone = "628138093473"; // GANTI NOMOR TUJUAN
-
-  // Encode biar aman di URL
-  const encodedMessage = encodeURIComponent(message);
-
-  //Buat link Whatsapp
-  const url = `https://wa.me/${phone}?text=${encodedMessage}`;
-
-  // Buka WhatsApp di tab baru
   window.open(url, "_blank");
 });
+
+// ========================
+// INIT
+// ========================
+
+updateSummary();
