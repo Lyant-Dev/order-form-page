@@ -24,7 +24,7 @@ function updateSummary() {
   cards.forEach((card) => {
     const name = card.dataset.name;
     const price = Number(card.dataset.price);
-    const qty = Number(card.querySelectorAll(".qty__num").textContent);
+    const qty = Number(card.querySelector(".qty__num").textContent);
 
     if (qty > 0) {
       // BUAT ITEM LIST
@@ -142,6 +142,10 @@ form.addEventListener("submit", function (e) {
     message += `Catatan: ${note}\n`;
   }
 
+  if (!customerName || !number || !date || !address) {
+  alert("Lengkapi data dulu");
+  return;
+}
   // =======================
   // 2.5 KIRIM KE WHATSAPP
   // =======================

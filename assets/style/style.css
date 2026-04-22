@@ -198,13 +198,20 @@ img {
   display: flex;
   gap: 0.5rem;
   align-items: center;
-  background-color: #f2f2f2;
   padding: 0.5rem 0.75rem;
   border-radius: 0.5rem;
 }
+
 .qty__minus,
 .qty__plus {
+  font-size: 1.5rem;
+  padding: auto;
   cursor: pointer;
+  width: 1rem;
+  border-radius: 0.5rem;
+  background-color: var(--first-color);
+  padding: rem;
+  color: white;
 }
 
 /* ORDER SUMMARY */
@@ -213,8 +220,6 @@ img {
   font-weight: var(--font-semi-bold);
   margin-top: 1rem;
 }
-
-
 
 /* CUSTOMER DATA  */
 .customer__data {
