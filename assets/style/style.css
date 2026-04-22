@@ -149,7 +149,6 @@ img {
 /* PRODUCTS  */
 .products__container {
   background-color: var(--body-color-white);
-  margin: 0rem 0.5rem;
   border-radius: 1rem;
   padding-bottom: 1rem;
 }
@@ -201,31 +200,67 @@ img {
   padding: 0.5rem 0.75rem;
   border-radius: 0.5rem;
 }
+.products__card {
+  transition: transform 0.2s;
+}
+
+.products__card:hover {
+  transform: scale(1.02);
+}
 
 .qty__minus,
 .qty__plus {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--body-color-white);
+  color: var(--text-color);
   font-size: 1.5rem;
-  padding: auto;
   cursor: pointer;
-  width: 1rem;
-  border-radius: 0.5rem;
-  background-color: var(--first-color);
-  padding: rem;
-  color: white;
+  border: none;
+}
+.qty__minus:active,
+.qty__plus:active {
+  transform: scale(0.9);
 }
 
 /* ORDER SUMMARY */
+.summary__container {
+  background-color: var(--body-color-white);
+  border-radius: 1rem;
+  padding-bottom: 1rem;
+}
 .summary__title {
   font-size: var(--normal-font-size);
   font-weight: var(--font-semi-bold);
   margin-top: 1rem;
 }
-
-/* CUSTOMER DATA  */
-.customer__data {
+.order__summary {
   background-color: var(--body-color-white);
   margin: 0.5rem;
+  padding: 1rem;
   border-radius: 1rem;
+}
+.order__summary ul {
+  margin-top: 0.5rem;
+}
+.order__summary li {
+  font-size: var(--small-font-size);
+  margin-bottom: 0.25rem;
+}
+#summary-total {
+  margin-top: 0.5rem;
+  font-weight: var(--font-semi-bold);
+}
+
+/* CUSTOMER DATA  */
+.customer__container {
+  background-color: var(--body-color-white);
+  border-radius: 1rem;
+  padding-bottom: .5rem;
 }
 .data__title {
   font-size: var(--h2-font-size);
@@ -246,6 +281,11 @@ img {
 .customer__input input {
   background-color: transparent;
   width: 100%;
+  padding: 0.5rem;
+  font-size: 0.9rem;
+}
+.customer__input input:focus {
+  outline: 2px solid var(--first-color);
 }
 
 .submit__button {
@@ -264,4 +304,32 @@ img {
 .submit__button:hover {
   background-color: var(--container-color);
   color: var(--text-color-light);
+}
+.products,
+.summary,
+.customer {
+  margin-bottom: 1rem;
+}
+
+/* BREAKPOINTS */
+
+/* Tablet */
+@media screen and (min-width: 576px) {
+  .products__container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Laptop kecil */
+@media screen and (min-width: 768px) {
+  .products__container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Desktop */
+@media screen and (min-width: 1024px) {
+  .products__container {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }

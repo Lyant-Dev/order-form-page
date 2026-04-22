@@ -15,7 +15,6 @@ const cards = document.querySelectorAll(".products__card");
 function updateSummary() {
   const summaryList = document.getElementById("summary-list");
   const summaryTotal = document.getElementById("summary-total");
-
   // RESET ISI
   summaryList.innerHTML = "";
 
@@ -36,9 +35,9 @@ function updateSummary() {
     }
   });
 
-  const formattedTotal = total.toLocaleString("id-ID");
+  const formatedTotal = total.toLocaleString("id-ID");
 
-  summaryTotal.textContent = `Total: Rp${formattedTotal}`;
+  summaryTotal.textContent = `Total: Rp${formatedTotal}`;
 
   const submitBtn = document.querySelector(".submit__button");
 
@@ -90,6 +89,13 @@ form.addEventListener("submit", function (e) {
   // 2.1 INIT MESSAGE & TOTAL
   // ======================
 
+  // VALIDASI INPUT
+
+  if (!customerName || !number || !date || !address) {
+    alert("Lengkapi data dulu");
+    return;
+  }
+  
   // Text awal pesan
 
   let message = "Halo, Saya ingin order:\n\n";
@@ -139,13 +145,8 @@ form.addEventListener("submit", function (e) {
   const note = document.getElementById("note").value;
 
   // Tambahin total ke pesan
-  message += `\nTotal: Rp${formattedTotal}\n\n`;
-
-  // Tambahin ke message
-  message += `Nama: ${customerName}\n`;
-  message += `No WA: ${number}\n`;
-  message += `Tanggal: ${date}\n`;
-  message += `Alamat: ${address}\n`;
+  const formatedTotal = total.toLocaleString("id-ID");
+  message += `\nTotal: Rp${formatedTotal}\n\n`;
 
   // FORMAT NOMOR WA USER
   let cleanNumber = number.replace(/\D/g, ""); //hapus selain angka
@@ -154,16 +155,15 @@ form.addEventListener("submit", function (e) {
     cleanNumber = "62" + cleanNumber.slice(1);
   }
 
+  // Tambahin ke message
+  message += `Nama: ${customerName}\n`;
+  message += `No WA: ${cleanNumber}\n`;
+  message += `Tanggal: ${date}\n`;
+  message += `Alamat: ${address}\n`;
+
   // Catatan Opsional
   if (note) {
     message += `Catatan: ${note}\n`;
-  }
-
-  // VALIDASI INPUT
-
-  if (!customerName || !number || !date || !address) {
-    alert("Lengkapi data dulu");
-    return;
   }
 
   // =======================
