@@ -36,7 +36,9 @@ function updateSummary() {
     }
   });
 
-  summaryTotal.textContent = `Total: Rp${total}`;
+  const formattedTotal = total.toLocaleString("id-ID");
+
+  summaryTotal.textContent = `Total: Rp${formattedTotal}`;
 
   const submitBtn = document.querySelector(".submit__button");
 
@@ -137,7 +139,7 @@ form.addEventListener("submit", function (e) {
   const note = document.getElementById("note").value;
 
   // Tambahin total ke pesan
-  message += `\nTotal: Rp${total}\n\n`;
+  message += `\nTotal: Rp${formattedTotal}\n\n`;
 
   // Tambahin ke message
   message += `Nama: ${customerName}\n`;
@@ -163,6 +165,7 @@ form.addEventListener("submit", function (e) {
     alert("Lengkapi data dulu");
     return;
   }
+
   // =======================
   // 2.5 KIRIM KE WHATSAPP
   // =======================
