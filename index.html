@@ -7,7 +7,11 @@
     <title>Order Form</title>
 
     <!-- FAVICON  -->
-    <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon" />
+    <link
+      rel="shortcut icon"
+      href="assets/img/favicon.png"
+      type="image/x-icon"
+    />
 
     <!-- STYLE  -->
     <link rel="stylesheet" href="assets/style/style.css" />
@@ -17,240 +21,246 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   </head>
   <body>
-    <!-- HEADER   -->
-    <section class="header" id="header">
-      <div class="header__container container grid">
-        <h1 class="section__title">Menu Pesanan</h1>
-        <p class="header__description">
-          Isi form berikut untuk melakukan pemesanan
-        </p>
-      </div>
-    </section>
+    <main>
+      <!-- HEADER   -->
+      <header class="header" id="header">
+        <div class="header__container container grid">
+          <h1 class="section__title">Menu Pesanan</h1>
+          <p class="header__description">
+            Isi form berikut untuk melakukan pemesanan
+          </p>
+        </div>
+      </header>
 
-    <!-- PRODUCTS  -->
-    <section class="products" id="products">
-      <div class="products__container container grid">
-        <h2 class="menu__title">Daftar Menu:</h2>
-        <div
-          class="products__card"
-          data-name="Chicken Teriyaki"
-          data-price="35000"
-        >
-          <div class="products__img-wrapper">
-            <img
-              src="assets/img/product-1.png"
-              alt="image"
-              class="products__image"
-            />
+      <!-- PRODUCTS  -->
+      <section class="products" id="products">
+        <div class="products__container container grid">
+          <h2 class="menu__title">Daftar Menu:</h2>
+          <div
+            class="products__card"
+            data-name="Chicken Teriyaki"
+            data-price="35000"
+          >
+            <div class="products__img-wrapper">
+              <img
+                src="assets/img/product-1.png"
+                alt="Chicken Teriyaki"
+                class="products__image"
+              />
+            </div>
+            <div class="products__info">
+              <h3 class="products__title">Chicken Teriyaki</h3>
+              <p class="products__price">Rp35.000</p>
+            </div>
+            <div class="products__qty">
+              <span class="decrease__btn">
+                <button class="qty__minus" aria-label="Decrease">-</button>
+              </span>
+              <span class="qty__num">0</span>
+              <span class="increase__btn">
+                <button class="qty__plus" aria-label="Increase">+</button>
+              </span>
+            </div>
           </div>
-          <div class="products__info">
-            <h3 class="products__title">Chicken Teriyaki</h3>
-            <p class="products__price">Rp35.000</p>
+          <div
+            class="products__card"
+            data-name="Beef Bulgogi"
+            data-price="40000"
+          >
+            <div class="products__img-wrapper">
+              <img
+                src="assets/img/product-2.png"
+                alt="Beef Bulgogi"
+                class="products__image"
+              />
+            </div>
+            <div class="products__info">
+              <h3 class="products__title">Beef Bulgogi</h3>
+              <p class="products__price">Rp40.000</p>
+            </div>
+            <div class="products__qty">
+              <span class="decrease__btn">
+                <button class="qty__minus" aria-label="Decrease">-</button>
+              </span>
+              <span class="qty__num">0</span>
+              <span class="increase__btn">
+                <button class="qty__plus" aria-label="Increase">+</button>
+              </span>
+            </div>
           </div>
-          <div class="products__qty">
-            <span class="decrease__btn">
-              <button class="qty__minus" aria-label="Decrease">-</button>
-            </span>
-            <span class="qty__num">0</span>
-            <span class="increase__btn">
-              <button class="qty__plus" aria-label="Increase">+</button>
-            </span>
+          <div
+            class="products__card"
+            data-name="Seafood Fried-rice"
+            data-price="39000"
+          >
+            <div class="products__img-wrapper">
+              <img
+                src="assets/img/product-3.png"
+                alt="Seafood Fried-rice"
+                class="products__image"
+              />
+            </div>
+            <div class="products__info">
+              <h3 class="products__title">Seafood Fried-rice</h3>
+              <p class="products__price">Rp39.000</p>
+            </div>
+            <div class="products__qty">
+              <span class="decrease__btn">
+                <button class="qty__minus" aria-label="Decrease">-</button>
+              </span>
+              <span class="qty__num">0</span>
+              <span class="increase__btn">
+                <button class="qty__plus" aria-label="Increase">+</button>
+              </span>
+            </div>
+          </div>
+          <div
+            class="products__card"
+            data-name="Peri Peri Chicken"
+            data-price="35000"
+          >
+            <div class="products__img-wrapper">
+              <img
+                src="assets/img/product-4.png"
+                alt="Peri Peri Chicken"
+                class="products__image"
+              />
+            </div>
+            <div class="products__info">
+              <h3 class="products__title">Peri Peri Chicken</h3>
+              <p class="products__price">Rp35.000</p>
+            </div>
+            <div class="products__qty">
+              <span class="decrease__btn">
+                <button class="qty__minus" aria-label="Decrease">-</button>
+              </span>
+              <span class="qty__num">0</span>
+              <span class="increase__btn">
+                <button class="qty__plus" aria-label="Increase">+</button>
+              </span>
+            </div>
+          </div>
+          <div
+            class="products__card"
+            data-name="Beef Noodle Soup"
+            data-price="40000"
+          >
+            <div class="products__img-wrapper">
+              <img
+                src="assets/img/product-5.png"
+                alt="Beef Noodle Soup"
+                class="products__image"
+              />
+            </div>
+            <div class="products__info">
+              <h3 class="products__title">Beef Noodle Soup</h3>
+              <p class="products__price">Rp40.000</p>
+            </div>
+            <div class="products__qty">
+              <span class="decrease__btn">
+                <button class="qty__minus" aria-label="Decrease">-</button>
+              </span>
+              <span class="qty__num">0</span>
+              <span class="increase__btn">
+                <button class="qty__plus" aria-label="Increase">+</button>
+              </span>
+            </div>
+          </div>
+          <div class="products__card" data-name="Fried Fish" data-price="39000">
+            <div class="products__img-wrapper">
+              <img
+                src="assets/img/product-6.png"
+                alt="Fried Fish"
+                class="products__image"
+              />
+            </div>
+            <div class="products__info">
+              <h3 class="products__title">Fried Fish</h3>
+              <p class="products__price">Rp39.000</p>
+            </div>
+            <div class="products__qty">
+              <span class="decrease__btn">
+                <button class="qty__minus" aria-label="Decrease">-</button>
+              </span>
+              <span class="qty__num">0</span>
+              <span class="increase__btn">
+                <button class="qty__plus" aria-label="Increase">+</button>
+              </span>
+            </div>
           </div>
         </div>
-        <div class="products__card" data-name="Beef Bulgogi" data-price="40000">
-          <div class="products__img-wrapper">
-            <img
-              src="assets/img/product-2.png"
-              alt="image"
-              class="products__image"
-            />
-          </div>
-          <div class="products__info">
-            <h3 class="products__title">Beef Bulgogi</h3>
-            <p class="products__price">Rp40.000</p>
-          </div>
-          <div class="products__qty">
-            <span class="decrease__btn">
-              <button class="qty__minus" aria-label="Decrease">-</button>
-            </span>
-            <span class="qty__num">0</span>
-            <span class="increase__btn">
-              <button class="qty__plus" aria-label="Increase">+</button>
-            </span>
-          </div>
-        </div>
-        <div
-          class="products__card"
-          data-name="Seafood Fried-rice"
-          data-price="39000"
-        >
-          <div class="products__img-wrapper">
-            <img
-              src="assets/img/product-3.png"
-              alt="image"
-              class="products__image"
-            />
-          </div>
-          <div class="products__info">
-            <h3 class="products__title">Seafood Fried-rice</h3>
-            <p class="products__price">Rp39.000</p>
-          </div>
-          <div class="products__qty">
-            <span class="decrease__btn">
-              <button class="qty__minus" aria-label="Decrease">-</button>
-            </span>
-            <span class="qty__num">0</span>
-            <span class="increase__btn">
-              <button class="qty__plus" aria-label="Increase">+</button>
-            </span>
-          </div>
-        </div>
-        <div
-          class="products__card"
-          data-name="Peri Peri Chicken"
-          data-price="35000"
-        >
-          <div class="products__img-wrapper">
-            <img
-              src="assets/img/product-4.png"
-              alt="image"
-              class="products__image"
-            />
-          </div>
-          <div class="products__info">
-            <h3 class="products__title">Peri Peri Chicken</h3>
-            <p class="products__price">Rp35.000</p>
-          </div>
-          <div class="products__qty">
-            <span class="decrease__btn">
-              <button class="qty__minus" aria-label="Decrease">-</button>
-            </span>
-            <span class="qty__num">0</span>
-            <span class="increase__btn">
-              <button class="qty__plus" aria-label="Increase">+</button>
-            </span>
-          </div>
-        </div>
-        <div class="products__card" data-name="Beef Noodle Soup" data-price="40000">
-          <div class="products__img-wrapper">
-            <img
-              src="assets/img/product-5.png"
-              alt="image"
-              class="products__image"
-            />
-          </div>
-          <div class="products__info">
-            <h3 class="products__title">Beef Noodle Soup</h3>
-            <p class="products__price">Rp40.000</p>
-          </div>
-          <div class="products__qty">
-            <span class="decrease__btn">
-              <button class="qty__minus" aria-label="Decrease">-</button>
-            </span>
-            <span class="qty__num">0</span>
-            <span class="increase__btn">
-              <button class="qty__plus" aria-label="Increase">+</button>
-            </span>
-          </div>
-        </div>
-        <div
-          class="products__card"
-          data-name="Fried Fish"
-          data-price="39000"
-        >
-          <div class="products__img-wrapper">
-            <img
-              src="assets/img/product-6.png"
-              alt="image"
-              class="products__image"
-            />
-          </div>
-          <div class="products__info">
-            <h3 class="products__title">Fried Fish</h3>
-            <p class="products__price">Rp39.000</p>
-          </div>
-          <div class="products__qty">
-            <span class="decrease__btn">
-              <button class="qty__minus" aria-label="Decrease">-</button>
-            </span>
-            <span class="qty__num">0</span>
-            <span class="increase__btn">
-              <button class="qty__plus" aria-label="Increase">+</button>
-            </span>
-          </div>
-        </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- ORDER SUMMARY -->
-    <section class="summary" id="order-summary">
-      <div class="summary__container container grid">
-        <h3 class="summary__title">Total Harga</h3>
-        <ul id="summary-list"></ul>
-        <p id="summary-total">Total: Rp0</p>
-      </div>
-    </section>
+      <!-- ORDER SUMMARY -->
+      <section class="summary" id="order-summary">
+        <div class="summary__container container grid">
+          <h3 class="summary__title">Total Harga</h3>
+          <ul id="summary-list"></ul>
+          <p id="summary-total">Total: Rp0</p>
+        </div>
+      </section>
 
-    <!-- CUSTOMER DATA  -->
-    <section class="customer" id="customer-data">
-      <div class="customer__container container grid">
-        <h2 class="data__title">Isi Data Pemesanan:</h2>
-        <form action="" class="customer__form" id="order-form">
-          <div class="customer__input">
-            <input
-              type="text"
-              name="name"
-              id="name"
-              required
-              aria-label="name"
-              placeholder="Nama"
-            />
-          </div>
-          <div class="customer__input">
-            <input
-              type="tel"
-              name="number"
-              id="number"
-              required
-              aria-label="number"
-              placeholder="No. Whatsapp"
-            />
-          </div>
-          <div class="customer__input">
-            <input
-              type="text"
-              name="date"
-              id="date"
-              required
-              aria-label="date"
-              placeholder="Tanggal Order (contoh: 1 Januari 2026)"
-            />
-          </div>
-          <div class="customer__input">
-            <input
-              type="text"
-              name="address"
-              id="address"
-              required
-              aria-label="address"
-              placeholder="Alamat Pengiriman"
-            />
-          </div>
-          <div class="customer__input">
-            <input
-              type="text"
-              name="note"
-              id="note"
-              aria-label="note"
-              placeholder="Catatan"
-            />
-          </div>
-          <button type="submit" class="submit__button" disabled>
-            Kirim Order Sekarang
-          </button>
-        </form>
-      </div>
-    </section>
+      <!-- CUSTOMER DATA  -->
+      <section class="customer" id="customer-data">
+        <div class="customer__container container grid">
+          <h2 class="data__title">Isi Data Pemesanan:</h2>
+          <form action="" class="customer__form" id="order-form">
+            <div class="customer__input">
+              <input
+                type="text"
+                name="name"
+                id="name"
+                required
+                aria-label="name"
+                placeholder="Nama"
+              />
+            </div>
+            <div class="customer__input">
+              <input
+                type="tel"
+                name="number"
+                id="number"
+                required
+                aria-label="number"
+                placeholder="No. Whatsapp"
+              />
+            </div>
+            <div class="customer__input">
+              <input
+                type="text"
+                name="date"
+                id="date"
+                required
+                aria-label="date"
+                placeholder="Tanggal Order (contoh: 1 Januari 2026)"
+              />
+            </div>
+            <div class="customer__input">
+              <input
+                type="text"
+                name="address"
+                id="address"
+                required
+                aria-label="address"
+                placeholder="Alamat Pengiriman"
+              />
+            </div>
+            <div class="customer__input">
+              <input
+                type="text"
+                name="note"
+                id="note"
+                aria-label="note"
+                placeholder="Catatan"
+              />
+            </div>
+            <button type="submit" class="submit__button" disabled>
+              Kirim Order Sekarang
+            </button>
+          </form>
+        </div>
+      </section>
+    </main>
 
     <script src="assets/app/app.js"></script>
   </body>
